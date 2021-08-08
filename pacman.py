@@ -1,5 +1,5 @@
-#Pacman in Python with PyGame
-#https://github.com/hbokmann/Pacman
+# Pacman in Python with PyGame
+# https://github.com/hbokmann/Pacman
   
 import pygame._view
   
@@ -14,7 +14,7 @@ yellow   = ( 255, 255,   0)
 Trollicon=pygame.image.load('images/Trollman.png')
 pygame.display.set_icon(Trollicon)
 
-#Add music
+# Add music
 pygame.mixer.init()
 pygame.mixer.music.load('pacman.mp3')
 pygame.mixer.music.play(-1, 0.0)
@@ -197,7 +197,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.left=old_x
             self.rect.top=old_y
 
-#Inheritime Player klassist
+# Inheritime Player klassist
 class Ghost(Player):
     # Change the speed of the ghost
     def changespeed(self,list,ghost,turn,steps,l):
@@ -361,13 +361,13 @@ clock = pygame.time.Clock()
 pygame.font.init()
 font = pygame.font.Font("freesansbold.ttf", 24)
 
-#default locations for Pacman and monstas
-w = 303-16 #Width
-p_h = (7*60)+19 #Pacman height
-m_h = (4*60)+19 #Monster height
-b_h = (3*60)+19 #Binky height
-i_w = 303-16-32 #Inky width
-c_w = 303+(32-16) #Clyde width
+# Default locations for Pacman and monstas
+w = 303-16 # Width
+p_h = (7*60)+19 # Pacman height
+m_h = (4*60)+19 # Monster height
+b_h = (3*60)+19 # Binky height
+i_w = 303-16-32 # Inky width
+c_w = 303+(32-16) # Clyde width
 
 def startGame():
 
@@ -556,13 +556,13 @@ def doNext(message,left,all_sprites_list,block_list,monsta_list,pacman_collide,w
             del gate
             startGame()
 
-      #Grey background
+      # Grey background
       w = pygame.Surface((400,200))  # the size of your rect
       w.set_alpha(10)                # alpha level
       w.fill((128,128,128))           # this fills the entire surface
       screen.blit(w, (100,200))    # (0,0) are the top-left coordinates
 
-      #Won or lost
+      # Won or lost
       text1=font.render(message, True, white)
       screen.blit(text1, [left, 233])
 
