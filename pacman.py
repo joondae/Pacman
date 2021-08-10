@@ -3,15 +3,15 @@
   
 import pygame._view
   
-black = (0,0,0)
-white = (255,255,255)
-blue = (0,0,255)
-green = (0,255,0)
-red = (255,0,0)
-purple = (255,0,255)
-yellow   = ( 255, 255,   0)
+black = (0, 0, 0)
+white = (255, 255, 255)
+blue = (0, 0, 255)
+green = (0, 255, 0)
+red = (255, 0, 0)
+purple = (255, 0, 255)
+yellow = (255, 255, 0)
 
-Trollicon=pygame.image.load('images/Trollman.png')
+Trollicon = pygame.image.load('images/Trollman.png')
 pygame.display.set_icon(Trollicon)
 
 # Add music
@@ -19,10 +19,11 @@ pygame.mixer.init()
 pygame.mixer.music.load('pacman.mp3')
 pygame.mixer.music.play(-1, 0.0)
 
+
 # This class represents the bar at the bottom that the player controls
 class Wall(pygame.sprite.Sprite):
     # Constructor function
-    def __init__(self,x,y,width,height, color):
+    def __init__(self, x, y, width, height, color):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
   
@@ -35,66 +36,69 @@ class Wall(pygame.sprite.Sprite):
         self.rect.top = y
         self.rect.left = x
 
+
 # This creates all the walls in room 1
 def setupRoomOne(all_sprites_list):
     # Make the walls. (x_pos, y_pos, width, height)
-    wall_list=pygame.sprite.RenderPlain()
+    wall_list = pygame.sprite.RenderPlain()
      
     # This is a list of walls. Each is in the form [x, y, width, height]
-    walls = [ [0,0,6,600],
-              [0,0,600,6],
-              [0,600,606,6],
-              [600,0,6,606],
-              [300,0,6,66],
-              [60,60,186,6],
-              [360,60,186,6],
-              [60,120,66,6],
-              [60,120,6,126],
-              [180,120,246,6],
-              [300,120,6,66],
-              [480,120,66,6],
-              [540,120,6,126],
-              [120,180,126,6],
-              [120,180,6,126],
-              [360,180,126,6],
-              [480,180,6,126],
-              [180,240,6,126],
-              [180,360,246,6],
-              [420,240,6,126],
-              [240,240,42,6],
-              [324,240,42,6],
-              [240,240,6,66],
-              [240,300,126,6],
-              [360,240,6,66],
-              [0,300,66,6],
-              [540,300,66,6],
-              [60,360,66,6],
-              [60,360,6,186],
-              [480,360,66,6],
-              [540,360,6,186],
-              [120,420,366,6],
-              [120,420,6,66],
-              [480,420,6,66],
-              [180,480,246,6],
-              [300,480,6,66],
-              [120,540,126,6],
-              [360,540,126,6]
+    walls = [ [0, 0, 6, 600],
+              [0, 0, 600, 6],
+              [0, 600, 606, 6],
+              [600, 0, 6, 606],
+              [300, 0, 6, 66],
+              [60, 60, 186, 6],
+              [360, 60, 186, 6],
+              [60, 120, 66, 6],
+              [60, 120, 6, 126],
+              [180, 120, 246, 6],
+              [300, 120, 6, 66],
+              [480, 120, 66, 6],
+              [540, 120, 6, 126],
+              [120, 180, 126, 6],
+              [120, 180, 6, 126],
+              [360, 180, 126, 6],
+              [480, 180, 6, 126],
+              [180, 240, 6, 126],
+              [180, 360, 246, 6],
+              [420, 240, 6, 126],
+              [240, 240, 42, 6],
+              [324, 240, 42, 6],
+              [240, 240, 6, 66],
+              [240, 300, 126, 6],
+              [360, 240, 6, 66],
+              [0, 300, 66, 6],
+              [540, 300, 66, 6],
+              [60, 360, 66, 6],
+              [60, 360, 6, 186],
+              [480, 360, 66, 6],
+              [540, 360, 6, 186],
+              [120, 420, 366, 6],
+              [120, 420, 6, 66],
+              [480, 420, 6, 66],
+              [180, 480, 246, 6],
+              [300, 480, 6, 66],
+              [120, 540, 126, 6],
+              [360, 540, 126, 6]
             ]
      
     # Loop through the list. Create the wall, add it to the list
     for item in walls:
-        wall=Wall(item[0],item[1],item[2],item[3],blue)
+        wall = Wall(item[0], item[1], item[2], item[3], blue)
         wall_list.add(wall)
         all_sprites_list.add(wall)
          
     # return our new list
     return wall_list
 
+
 def setupGate(all_sprites_list):
-      gate = pygame.sprite.RenderPlain()
-      gate.add(Wall(282,242,42,2,white))
-      all_sprites_list.add(gate)
-      return gate
+    gate = pygame.sprite.RenderPlain()
+    gate.add(Wall(282, 242, 42, 2, white))
+    all_sprites_list.add(gate)
+    return gate
+
 
 # This class represents the ball        
 # It derives from the "Sprite" class in Pygame
@@ -111,7 +115,7 @@ class Block(pygame.sprite.Sprite):
         self.image = pygame.Surface([width, height])
         self.image.fill(white)
         self.image.set_colorkey(white)
-        pygame.draw.ellipse(self.image,color,[0,0,width,height])
+        pygame.draw.ellipse(self.image, color, [0, 0, width, height])
  
         # Fetch the rectangle object that has the dimensions of the image
         # image.
@@ -119,15 +123,16 @@ class Block(pygame.sprite.Sprite):
         # of rect.x and rect.y
         self.rect = self.image.get_rect() 
 
+
 # This class represents the bar at the bottom that the player controls
 class Player(pygame.sprite.Sprite):
   
     # Set speed vector
-    change_x=0
-    change_y=0
+    change_x = 0
+    change_y = 0
   
     # Constructor function
-    def __init__(self,x,y, filename):
+    def __init__(self, x, y, filename):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
    
@@ -147,33 +152,33 @@ class Player(pygame.sprite.Sprite):
         self.prev_y = self.change_y
 
     # Change the speed of the player
-    def changespeed(self,x,y):
-        self.change_x+=x
-        self.change_y+=y
+    def changespeed(self, x, y):
+        self.change_x += x
+        self.change_y += y
           
     # Find a new position for the player
-    def update(self,walls,gate):
+    def update(self, walls, gate):
         # Get the old position, in case we need to go back to it
         
-        old_x=self.rect.left
-        new_x=old_x+self.change_x
-        prev_x=old_x+self.prev_x
+        old_x = self.rect.left
+        new_x = old_x + self.change_x
+        prev_x = old_x + self.prev_x
         self.rect.left = new_x
         
-        old_y=self.rect.top
-        new_y=old_y+self.change_y
-        prev_y=old_y+self.prev_y
+        old_y = self.rect.top
+        new_y = old_y + self.change_y
+        prev_y = old_y + self.prev_y
 
         # Did this update cause us to hit a wall?
         x_collide = pygame.sprite.spritecollide(self, walls, False)
         if x_collide:
             # Whoops, hit a wall. Go back to the old position
-            self.rect.left=old_x
-            # self.rect.top=prev_y
+            self.rect.left = old_x
+            # self.rect.top = prev_y
             # y_collide = pygame.sprite.spritecollide(self, walls, False)
             # if y_collide:
             #     # Whoops, hit a wall. Go back to the old position
-            #     self.rect.top=old_y
+            #     self.rect.top = old_y
             #     print('a')
         else:
 
@@ -183,148 +188,150 @@ class Player(pygame.sprite.Sprite):
             y_collide = pygame.sprite.spritecollide(self, walls, False)
             if y_collide:
                 # Whoops, hit a wall. Go back to the old position
-                self.rect.top=old_y
-                # self.rect.left=prev_x
+                self.rect.top = old_y
+                # self.rect.left = prev_x
                 # x_collide = pygame.sprite.spritecollide(self, walls, False)
                 # if x_collide:
                 #     # Whoops, hit a wall. Go back to the old position
-                #     self.rect.left=old_x
+                #     self.rect.left = old_x
                 #     print('b')
 
         if gate != False:
           gate_hit = pygame.sprite.spritecollide(self, gate, False)
           if gate_hit:
-            self.rect.left=old_x
-            self.rect.top=old_y
+            self.rect.left = old_x
+            self.rect.top = old_y
+
 
 # Inheritime Player klassist
 class Ghost(Player):
     # Change the speed of the ghost
-    def changespeed(self,list,ghost,turn,steps,l):
+    def changespeed(self, list, ghost, turn, steps, l):
       try:
-        z=list[turn][2]
+        z = list[turn][2]
         if steps < z:
-          self.change_x=list[turn][0]
-          self.change_y=list[turn][1]
-          steps+=1
+          self.change_x = list[turn][0]
+          self.change_y = list[turn][1]
+          steps += 1
         else:
           if turn < l:
-            turn+=1
+            turn += 1
           elif ghost == "clyde":
             turn = 2
           else:
             turn = 0
-          self.change_x=list[turn][0]
-          self.change_y=list[turn][1]
+          self.change_x = list[turn][0]
+          self.change_y = list[turn][1]
           steps = 0
-        return [turn,steps]
+        return [turn, steps]
       except IndexError:
-         return [0,0]
+         return [0, 0]
+
 
 Pinky_directions = [
-[0,-30,4],
-[15,0,9],
-[0,15,11],
-[-15,0,23],
-[0,15,7],
-[15,0,3],
-[0,-15,3],
-[15,0,19],
-[0,15,3],
-[15,0,3],
-[0,15,3],
-[15,0,3],
-[0,-15,15],
-[-15,0,7],
-[0,15,3],
-[-15,0,19],
-[0,-15,11],
-[15,0,9]
+[0, -30, 4],
+[15, 0, 9],
+[0, 15, 11],
+[-15, 0, 23],
+[0, 15, 7],
+[15, 0, 3],
+[0, -15, 3],
+[15, 0, 19],
+[0, 15, 3],
+[15, 0, 3],
+[0, 15, 3],
+[15, 0, 3],
+[0, -15, 15],
+[-15, 0, 7],
+[0, 15, 3],
+[-15, 0, 19],
+[0, -15, 11],
+[15, 0, 9]
 ]
 
 Blinky_directions = [
-[0,-15,4],
-[15,0,9],
-[0,15,11],
-[15,0,3],
-[0,15,7],
-[-15,0,11],
-[0,15,3],
-[15,0,15],
-[0,-15,15],
-[15,0,3],
-[0,-15,11],
-[-15,0,3],
-[0,-15,11],
-[-15,0,3],
-[0,-15,3],
-[-15,0,7],
-[0,-15,3],
-[15,0,15],
-[0,15,15],
-[-15,0,3],
-[0,15,3],
-[-15,0,3],
-[0,-15,7],
-[-15,0,3],
-[0,15,7],
-[-15,0,11],
-[0,-15,7],
-[15,0,5]
+[0, -15, 4],
+[15, 0, 9],
+[0, 15, 11],
+[15, 0, 3],
+[0, 15, 7],
+[-15, 0, 11],
+[0, 15, 3],
+[15, 0, 15],
+[0, -15, 15],
+[15, 0, 3],
+[0, -15, 11],
+[-15, 0, 3],
+[0, -15, 11],
+[-15, 0, 3],
+[0, -15, 3],
+[-15, 0, 7],
+[0, -15, 3],
+[15, 0, 15],
+[0, 15, 15],
+[-15, 0, 3],
+[0, 15, 3],
+[-15, 0, 3],
+[0, -15, 7],
+[-15, 0, 3],
+[0, 15, 7],
+[-15, 0, 11],
+[0, -15, 7],
+[15, 0, 5]
 ]
 
 Inky_directions = [
-[30,0,2],
-[0,-15,4],
-[15,0,10],
-[0,15,7],
-[15,0,3],
-[0,-15,3],
-[15,0,3],
-[0,-15,15],
-[-15,0,15],
-[0,15,3],
-[15,0,15],
-[0,15,11],
-[-15,0,3],
-[0,-15,7],
-[-15,0,11],
-[0,15,3],
-[-15,0,11],
-[0,15,7],
-[-15,0,3],
-[0,-15,3],
-[-15,0,3],
-[0,-15,15],
-[15,0,15],
-[0,15,3],
-[-15,0,15],
-[0,15,11],
-[15,0,3],
-[0,-15,11],
-[15,0,11],
-[0,15,3],
-[15,0,1],
+[30, 0, 2],
+[0, -15, 4],
+[15, 0, 10],
+[0, 15, 7],
+[15, 0, 3],
+[0, -15, 3],
+[15, 0, 3],
+[0, -15, 15],
+[-15, 0, 15],
+[0, 15, 3],
+[15, 0, 15],
+[0, 15, 11],
+[-15, 0, 3],
+[0, -15, 7],
+[-15, 0, 11],
+[0, 15, 3],
+[-15, 0, 11],
+[0, 15, 7],
+[-15, 0, 3],
+[0, -15, 3],
+[-15, 0, 3],
+[0, -15, 15],
+[15, 0, 15],
+[0, 15, 3],
+[-15, 0, 15],
+[0, 15, 11],
+[15, 0, 3],
+[0, -15, 11],
+[15, 0, 11],
+[0, 15, 3],
+[15, 0, 1],
 ]
 
 Clyde_directions = [
-[-30,0,2],
-[0,-15,4],
-[15,0,5],
-[0,15,7],
-[-15,0,11],
-[0,-15,7],
-[-15,0,3],
-[0,15,7],
-[-15,0,7],
-[0,15,15],
-[15,0,15],
-[0,-15,3],
-[-15,0,11],
-[0,-15,7],
-[15,0,3],
-[0,-15,11],
-[15,0,9],
+[-30, 0, 2],
+[0, -15, 4],
+[15, 0, 5],
+[0, 15, 7],
+[-15, 0, 11],
+[0, -15, 7],
+[-15, 0, 3],
+[0, 15, 7],
+[-15, 0, 7],
+[0, 15, 15],
+[15, 0, 15],
+[0, -15, 3],
+[-15, 0, 11],
+[0, -15, 7],
+[15, 0, 3],
+[0, -15, 11],
+[15, 0, 9],
 ]
 
 pl = len(Pinky_directions)-1
@@ -402,19 +409,19 @@ def startGame():
   all_sprites_list.add(Pacman)
   pacman_collide.add(Pacman)
    
-  Blinky=Ghost( w, b_h, "images/Blinky.png" )
+  Blinky = Ghost( w, b_h, "images/Blinky.png" )
   monsta_list.add(Blinky)
   all_sprites_list.add(Blinky)
 
-  Pinky=Ghost( w, m_h, "images/Pinky.png" )
+  Pinky = Ghost( w, m_h, "images/Pinky.png" )
   monsta_list.add(Pinky)
   all_sprites_list.add(Pinky)
    
-  Inky=Ghost( i_w, m_h, "images/Inky.png" )
+  Inky = Ghost( i_w, m_h, "images/Inky.png" )
   monsta_list.add(Inky)
   all_sprites_list.add(Inky)
    
-  Clyde=Ghost( c_w, m_h, "images/Clyde.png" )
+  Clyde = Ghost( c_w, m_h, "images/Clyde.png" )
   monsta_list.add(Clyde)
   all_sprites_list.add(Clyde)
 
@@ -453,56 +460,56 @@ def startGame():
       # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
       for event in pygame.event.get():
           if event.type == pygame.QUIT:
-              done=True
+              done = True
 
           if event.type == pygame.KEYDOWN:
               if event.key == pygame.K_LEFT:
-                  Pacman.changespeed(-30,0)
+                  Pacman.changespeed(-30, 0)
               if event.key == pygame.K_RIGHT:
                   Pacman.changespeed(30,0)
               if event.key == pygame.K_UP:
-                  Pacman.changespeed(0,-30)
+                  Pacman.changespeed(0, -30)
               if event.key == pygame.K_DOWN:
-                  Pacman.changespeed(0,30)
+                  Pacman.changespeed(0, 30)
 
           if event.type == pygame.KEYUP:
               if event.key == pygame.K_LEFT:
-                  Pacman.changespeed(30,0)
+                  Pacman.changespeed(30, 0)
               if event.key == pygame.K_RIGHT:
-                  Pacman.changespeed(-30,0)
+                  Pacman.changespeed(-30, 0)
               if event.key == pygame.K_UP:
-                  Pacman.changespeed(0,30)
+                  Pacman.changespeed(0, 30)
               if event.key == pygame.K_DOWN:
-                  Pacman.changespeed(0,-30)
+                  Pacman.changespeed(0, -30)
           
       # ALL EVENT PROCESSING SHOULD GO ABOVE THIS COMMENT
    
       # ALL GAME LOGIC SHOULD GO BELOW THIS COMMENT
-      Pacman.update(wall_list,gate)
+      Pacman.update(wall_list, gate)
 
-      returned = Pinky.changespeed(Pinky_directions,False,p_turn,p_steps,pl)
+      returned = Pinky.changespeed(Pinky_directions, False, p_turn, p_steps, pl)
       p_turn = returned[0]
       p_steps = returned[1]
-      Pinky.changespeed(Pinky_directions,False,p_turn,p_steps,pl)
-      Pinky.update(wall_list,False)
+      Pinky.changespeed(Pinky_directions, False, p_turn, p_steps, pl)
+      Pinky.update(wall_list, False)
 
-      returned = Blinky.changespeed(Blinky_directions,False,b_turn,b_steps,bl)
+      returned = Blinky.changespeed(Blinky_directions, False, b_turn, b_steps, bl)
       b_turn = returned[0]
       b_steps = returned[1]
-      Blinky.changespeed(Blinky_directions,False,b_turn,b_steps,bl)
-      Blinky.update(wall_list,False)
+      Blinky.changespeed(Blinky_directions, False, b_turn, b_steps, bl)
+      Blinky.update(wall_list, False)
 
-      returned = Inky.changespeed(Inky_directions,False,i_turn,i_steps,il)
+      returned = Inky.changespeed(Inky_directions, False, i_turn, i_steps, il)
       i_turn = returned[0]
       i_steps = returned[1]
-      Inky.changespeed(Inky_directions,False,i_turn,i_steps,il)
-      Inky.update(wall_list,False)
+      Inky.changespeed(Inky_directions, False, i_turn, i_steps, il)
+      Inky.update(wall_list, False)
 
-      returned = Clyde.changespeed(Clyde_directions,"clyde",c_turn,c_steps,cl)
+      returned = Clyde.changespeed(Clyde_directions, "clyde", c_turn, c_steps, cl)
       c_turn = returned[0]
       c_steps = returned[1]
-      Clyde.changespeed(Clyde_directions,"clyde",c_turn,c_steps,cl)
-      Clyde.update(wall_list,False)
+      Clyde.changespeed(Clyde_directions, "clyde", c_turn, c_steps, cl)
+      Clyde.update(wall_list, False)
 
       # See if the Pacman block has collided with anything.
       blocks_hit_list = pygame.sprite.spritecollide(Pacman, block_list, True)
@@ -521,16 +528,16 @@ def startGame():
       all_sprites_list.draw(screen)
       monsta_list.draw(screen)
 
-      text=font.render("Score: "+str(score)+"/"+str(bll), True, red)
+      text = font.render("Score: "+str(score)+"/"+str(bll), True, red)
       screen.blit(text, [10, 10])
 
       if score == bll:
-        doNext("Congratulations, you won!",145,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
+        doNext("Congratulations, you won!", 145, all_sprites_list, block_list, monsta_list, pacman_collide, wall_list, gate)
 
       monsta_hit_list = pygame.sprite.spritecollide(Pacman, monsta_list, False)
 
       if monsta_hit_list:
-        doNext("Game Over",235,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
+        doNext("Game Over", 235, all_sprites_list, block_list, monsta_list, pacman_collide, wall_list, gate)
 
       # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
       
@@ -538,7 +545,7 @@ def startGame():
     
       clock.tick(10)
 
-def doNext(message,left,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate):
+def doNext(message, left, all_sprites_list, block_list, monsta_list, pacman_collide, wall_list, gate):
   while True:
       # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
       for event in pygame.event.get():
@@ -557,18 +564,18 @@ def doNext(message,left,all_sprites_list,block_list,monsta_list,pacman_collide,w
             startGame()
 
       # Grey background
-      w = pygame.Surface((400,200))  # the size of your rect
+      w = pygame.Surface((400, 200))  # the size of your rect
       w.set_alpha(10)                # alpha level
-      w.fill((128,128,128))           # this fills the entire surface
-      screen.blit(w, (100,200))    # (0,0) are the top-left coordinates
+      w.fill((128, 128, 128))           # this fills the entire surface
+      screen.blit(w, (100, 200))    # (0, 0) are the top-left coordinates
 
       # Won or lost
-      text1=font.render(message, True, white)
+      text1 = font.render(message, True, white)
       screen.blit(text1, [left, 233])
 
-      text2=font.render("To play again, press ENTER.", True, white)
+      text2 = font.render("To play again, press ENTER.", True, white)
       screen.blit(text2, [135, 303])
-      text3=font.render("To quit, press ESCAPE.", True, white)
+      text3 = font.render("To quit, press ESCAPE.", True, white)
       screen.blit(text3, [165, 333])
 
       pygame.display.flip()
