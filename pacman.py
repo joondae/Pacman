@@ -1,8 +1,10 @@
 # Pacman in Python with PyGame
 # https://github.com/hbokmann/Pacman
-  
-import pygame._view
-  
+
+# This import statement was part of the source code. Might be outdated because repo is from 2012.
+# import pygame._view
+import pygame
+
 black = (0, 0, 0)
 white = (255, 255, 255)
 blue = (0, 0, 255)
@@ -361,8 +363,6 @@ background = background.convert()
 # Fill the screen with a black background
 background.fill(black)
 
-
-
 clock = pygame.time.Clock()
 
 pygame.font.init()
@@ -375,6 +375,7 @@ m_h = (4*60)+19 # Monster height
 b_h = (3*60)+19 # Binky height
 i_w = 303-16-32 # Inky width
 c_w = 303+(32-16) # Clyde width
+
 
 def startGame():
 
@@ -424,6 +425,7 @@ def startGame():
   Clyde = Ghost( c_w, m_h, "images/Clyde.png" )
   monsta_list.add(Clyde)
   all_sprites_list.add(Clyde)
+
 
   # Draw the grid
   for row in range(19):
@@ -545,6 +547,7 @@ def startGame():
     
       clock.tick(10)
 
+
 def doNext(message, left, all_sprites_list, block_list, monsta_list, pacman_collide, wall_list, gate):
   while True:
       # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
@@ -581,6 +584,7 @@ def doNext(message, left, all_sprites_list, block_list, monsta_list, pacman_coll
       pygame.display.flip()
 
       clock.tick(10)
+
 
 startGame()
 
